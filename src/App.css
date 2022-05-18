@@ -1,9 +1,91 @@
 .app {
-  width: 350px;
-  margin: 100px auto;
+  margin: 200px auto;
+  padding: 10px;
+  width: 620px;
+  height: 200px;
+  border: 3px solid black;
+  background-color: darkslategray;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
 }
-li{
-  margin: 500px 500px;
+.block {
+  border: 3px solid rgb(46, 43, 207);
+  border-radius: 10px;
+  height: 100%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.input{
+  margin: 5px;
+  font-size: 25px;
+}
+.input input{
+  height: 25px;
+  width: 50px;
+  margin-left: 45px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.button{
+  width: 270px;
+  height: 70px;
+  border:3px solid rgb(46, 43, 207);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button button{
+  width: 75px;
+  border-radius: 15px;
+  height: 35px;
+  margin: 15px ;
+}
+
+.value {
+  margin-bottom: 10px;
+  font-size: 40px;
+  width: 270px;
+  height: 100px;
+  border: 3px solid rgb(46, 43, 207);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.redValue {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 40px;
+  width: 270px;
+  height: 100px;
+  border: 3px solid rgb(46, 43, 207);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter {
+  margin-bottom: 10px;
+  font-size: 40px;
+  width: 270px;
+  height: 100px;
+  border: 3px solid rgb(46, 43, 207);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
