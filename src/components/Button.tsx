@@ -1,15 +1,13 @@
-import React, {useState} from 'react';
-import  "../App.css";
+import React from 'react';
+import "../App.css";
 
-type ButtonPropsType={
+type ButtonPropsType = {
     name: string
-    callBack: ()=>void
-    disable?: boolean
+    callBack: () => void
+    disable: boolean
 }
 
 export const Button = (props: ButtonPropsType) => {
-    const onclickHandler = () =>{
-        props.callBack()
-    }
-    return  <button onClick={onclickHandler} disabled={props.disable}>{props.name}</button>
+
+    return <button onClick={props.callBack} disabled={props.disable}>{props.name}</button>
 }

@@ -1,20 +1,23 @@
-import React, {ChangeEvent, useState} from 'react';
-import  "../App.css";
+import React, {ChangeEvent} from 'react';
+import "../App.css";
 
-type InputPropsType={
+type InputPropsType = {
     name: string
     value: number
-    callBack: (value: string)=>void
+    error: boolean
+    disable: boolean
+    callBack: (value: string) => void
 }
 
 export const Input = (props: InputPropsType) => {
 
-            const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                props.callBack(e.currentTarget.value)
-            }
-    return  (
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.callBack(e.currentTarget.value)
+    }
+    return (
         <div className="input"> {props.name}
-            <input value={props.value} type="number" onChange={onChangeHandler}/>
+            <input value={props.value} disabled={props.disable} className={props.error ? 'inputError' : ""} type="number"
+                   onChange={onChangeHandler}/>
         </div>
     )
 
