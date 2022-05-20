@@ -4,12 +4,12 @@ import {Button} from "./components/Button";
 import {Input} from "./components/Input";
 
 export const App = () => {
-    let [startValue, setStartValue] = useState<number>(0)// state for start ValueInput
-    let [maxValue, setMaxValue] = useState<number>(5)// state for maxValueInput
+    let [startValue, setStartValue] = useState<number>(Number(localStorage.getItem('startValue')))// state for start ValueInput
+    let [maxValue, setMaxValue] = useState<number>(Number(localStorage.getItem('maxValue')))// state for maxValueInput
     let [error, setError] = useState<boolean>(false)// for error disable inc
     let [errorInput, setErrorInput] = useState<boolean>(false)
     let [disableInput, setDisableInput] = useState<boolean>(false)
-    let [number, setNumber] = useState<number>(0)// state for number of counter
+    let [number, setNumber] = useState<number>(Number(localStorage.getItem('startValue')))// state for number of counter
     let [disableSet, setDisableSet] = useState<boolean>(true)// for error disable inc
     let [disableReset, setDisableReset] = useState<boolean>(false)// for error disable inc
     let [disableInc, setDisableInc] = useState<boolean>(false)// for error disable inc
