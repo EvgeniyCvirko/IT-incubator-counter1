@@ -5,27 +5,19 @@ import {Input} from "./components/Input";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "./store/store";
 import {DisableIncAC, DisableInputAC, DisableResetAC, DisableSetAC, ErrorAC, ErrorInputAC} from "./store/reducerError";
-import {MaxValueAC, StartValueAC} from "./store/reducerValue";
+import {MaxValueAC, NumberAC, StartValueAC, startValueAsNumberLS} from "./store/reducerValue";
 
 export const AppRedux = () => {
+
     const startValue = useSelector<AppStoreType, number>(state => state.value.startValue)
     const maxValue = useSelector<AppStoreType, number>(state => state.value.maxValue)
+    const number = useSelector<AppStoreType, number>(state => state.value.number)
     const error = useSelector<AppStoreType, boolean>(state => state.error.error)
     const errorInput = useSelector<AppStoreType, boolean>(state => state.error.errorInput)
     const disableInput = useSelector<AppStoreType, boolean>(state => state.error.disableInput)
     const disableSet = useSelector<AppStoreType, boolean>(state => state.error.disableSet)
     const disableReset = useSelector<AppStoreType, boolean>(state => state.error.disableReset)
     const disableInc = useSelector<AppStoreType, boolean>(state => state.error.disableInc)
-
-    //let [startValue, setStartValue] = useState<number>(Number(localStorage.getItem('startValue')))// state for start ValueInput
-    //let [maxValue, setMaxValue] = useState<number>(Number(localStorage.getItem('maxValue')))// state for maxValueInput
-    // let [error, setError] = useState<boolean>(false)// for error disable inc
-    // let [errorInput, setErrorInput] = useState<boolean>(false)
-    // let [disableInput, setDisableInput] = useState<boolean>(false)
-     let [number, setNumber] = useState<number>(Number(localStorage.getItem('startValue')))// state for number of counter
-    // let [disableSet, setDisableSet] = useState<boolean>(true)// for error disable inc
-    // let [disableReset, setDisableReset] = useState<boolean>(false)// for error disable inc
-    // let [disableInc, setDisableInc] = useState<boolean>(false)// for error disable inc
     const dispatch = useDispatch()
 
     let redNumber = "value"
@@ -65,13 +57,15 @@ export const AppRedux = () => {
     const incNumber = () => {
 
         if (number < maxValue) {
-            setNumber(number + 1)
+            dispatch(NumberAC(number + 1))
         }
         disableBtnInc()
 
     }
     const restNumber = () => {
-        setNumber(Number(localStorage.getItem('startValue')))
+
+        dispatch(NumberAC(startValueAsNumberLS))
+
         dispatch(DisableIncAC(false))
         dispatch(DisableInputAC(false))
     }
@@ -91,8 +85,9 @@ export const AppRedux = () => {
         let startValueAsNumber = localStorage.getItem('startValue')
         let maxValueAsNumber = localStorage.getItem('maxValue')
         if (startValueAsNumber && maxValueAsNumber) {
-            setNumber(JSON.parse(startValueAsNumber))
+            dispatch(DisableInputAC(JSON.parse(startValueAsNumber)))
         }
+        dispatch(NumberAC(startValue))
         dispatch(ErrorAC(false))
         dispatch(DisableResetAC(false))
         dispatch(DisableIncAC(false))
