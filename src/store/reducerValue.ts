@@ -1,12 +1,11 @@
 
 const initialState ={
     startValue : 0,
-    maxValue : 0
+    maxValue : 0,
+    number : 0,
 }
-type initialStateType = {
-    startValue : number
-    maxValue : number
-}
+type initialStateType = typeof initialState
+
 
 export const reducerValue = (state:initialStateType=initialState, action:ActionValueType ): initialStateType => {
 switch (action.type) {
