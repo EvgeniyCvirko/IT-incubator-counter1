@@ -12,17 +12,17 @@ type initialStateType = typeof initialState
 export const reducerError = (state: initialStateType = initialState, action: ActionValueType): initialStateType => {
     switch (action.type) {
         case "ERROR":
-            return state
+            return {...state, error: action.error }
         case "ERROR-INPUT":
-            return state
+            return {...state, errorInput: action.error }
         case "DISABLE-INPUT":
-            return state
+            return {...state, disableInput: action.error }
         case "DISABLE-SET":
-            return state
+            return {...state, disableSet: action.error }
         case "DISABLE-RESET":
-            return state
+            return {...state, disableReset: action.error }
         case "DISABLE-INC":
-            return state
+            return {...state, disableInc: action.error }
     }
     return state
 }
@@ -34,9 +34,9 @@ type ActionValueType = ReturnType<typeof ErrorAC>
                      | ReturnType<typeof DisableResetAC>
                      | ReturnType<typeof DisableIncAC>
 
-const ErrorAC = (error: boolean) => ({type: "ERROR", error} as const)
-const ErrorInputAC = (error: boolean) => ({type: "ERROR-INPUT", error} as const)
-const DisableInputAC = (error: boolean) => ({type: "DISABLE-INPUT", error} as const)
-const DisableSetAC = (error: boolean) => ({type: "DISABLE-SET", error} as const)
-const DisableResetAC = (error: boolean) => ({type: "DISABLE-RESET", error} as const)
-const DisableIncAC = (error: boolean) => ({type: "DISABLE-INC", error} as const)
+export const ErrorAC = (error: boolean) => ({type: "ERROR", error} as const)
+export const ErrorInputAC = (error: boolean) => ({type: "ERROR-INPUT", error} as const)
+export const DisableInputAC = (error: boolean) => ({type: "DISABLE-INPUT", error} as const)
+export const DisableSetAC = (error: boolean) => ({type: "DISABLE-SET", error} as const)
+export const DisableResetAC = (error: boolean) => ({type: "DISABLE-RESET", error} as const)
+export const DisableIncAC = (error: boolean) => ({type: "DISABLE-INC", error} as const)
