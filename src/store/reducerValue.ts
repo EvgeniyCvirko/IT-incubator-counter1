@@ -1,11 +1,9 @@
 
-export let startValueAsNumberLS = Number(localStorage.getItem('startValue'))
-export let maxValueAsNumberLS = Number(localStorage.getItem('maxValue'))
 
 const initialState ={
-    startValue : startValueAsNumberLS,
-    maxValue : maxValueAsNumberLS,
-    number : startValueAsNumberLS,
+    startValue : Number(localStorage.getItem('startValue')),
+    maxValue : Number(localStorage.getItem('maxValue')),
+    number :Number(localStorage.getItem('startValue')),
 }
 type initialStateType = typeof initialState
 

@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./App.css";
 import {Button} from "./components/Button";
 import {Input} from "./components/Input";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "./store/store";
 import {DisableIncAC, DisableInputAC, DisableResetAC, DisableSetAC, ErrorAC, ErrorInputAC} from "./store/reducerError";
-import {MaxValueAC, NumberAC, StartValueAC, startValueAsNumberLS} from "./store/reducerValue";
-
+import {MaxValueAC, NumberAC, StartValueAC} from "./store/reducerValue";
 export const AppRedux = () => {
 
     const startValue = useSelector<AppStoreType, number>(state => state.value.startValue)
@@ -63,9 +62,7 @@ export const AppRedux = () => {
 
     }
     const restNumber = () => {
-
-        dispatch(NumberAC(startValueAsNumberLS))
-
+        dispatch(NumberAC(Number(localStorage.getItem('startValue'))))
         dispatch(DisableIncAC(false))
         dispatch(DisableInputAC(false))
     }
