@@ -4,19 +4,21 @@ import {Button} from "./components/Button";
 import {Input} from "./components/Input";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "./store/store";
-import {DisableIncAC, DisableInputAC, DisableResetAC, DisableSetAC, ErrorAC, ErrorInputAC} from "./store/reducerError";
-import {MaxValueAC, NumberAC, StartValueAC} from "./store/reducerValue";
+import {
+    DisableIncAC,
+    DisableInputAC,
+    DisableResetAC,
+    DisableSetAC,
+    ErrorAC,
+    ErrorInputAC,
+    initialStateREType
+} from "./store/reducerError";
+import {initialStateRVType, MaxValueAC, NumberAC, StartValueAC} from "./store/reducerValue";
 export const AppRedux = () => {
-
-    const startValue = useSelector<AppStoreType, number>(state => state.value.startValue)
-    const maxValue = useSelector<AppStoreType, number>(state => state.value.maxValue)
-    const number = useSelector<AppStoreType, number>(state => state.value.number)
-    const error = useSelector<AppStoreType, boolean>(state => state.error.error)
-    const errorInput = useSelector<AppStoreType, boolean>(state => state.error.errorInput)
-    const disableInput = useSelector<AppStoreType, boolean>(state => state.error.disableInput)
-    const disableSet = useSelector<AppStoreType, boolean>(state => state.error.disableSet)
-    const disableReset = useSelector<AppStoreType, boolean>(state => state.error.disableReset)
-    const disableInc = useSelector<AppStoreType, boolean>(state => state.error.disableInc)
+    const state = useSelector<AppStoreType, initialStateRVType >(state=> state.value)
+    console.log(state)
+    const {startValue, maxValue,number} = useSelector<AppStoreType, initialStateRVType>(state => state.value)
+    const {error,errorInput,disableInput,disableSet, disableReset,disableInc } = useSelector<AppStoreType, initialStateREType>(state => state.error)
     const dispatch = useDispatch()
 
     let redNumber = "value"
@@ -25,7 +27,6 @@ export const AppRedux = () => {
         errorMessage = "Incorrect value!";
         redNumber = "redValue"
     }
-
     if (number === maxValue) {
         redNumber = "redValue";
     }
@@ -62,7 +63,7 @@ export const AppRedux = () => {
 
     }
     const restNumber = () => {
-        dispatch(NumberAC(Number(localStorage.getItem('startValue'))))
+        dispatch(NumberAC(startValue))
         dispatch(DisableIncAC(false))
         dispatch(DisableInputAC(false))
     }
@@ -74,17 +75,11 @@ export const AppRedux = () => {
     }
     const changeStartValue = (value: string) => {
         dispatch(StartValueAC(JSON.parse(value)))
+        dispatch(NumberAC(JSON.parse(value)))
         errorDisable(JSON.parse(value), maxValue)
     }
     const setHandler = () => {
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
-        let startValueAsNumber = localStorage.getItem('startValue')
-        let maxValueAsNumber = localStorage.getItem('maxValue')
-        if (startValueAsNumber && maxValueAsNumber) {
-            dispatch(DisableInputAC(JSON.parse(startValueAsNumber)))
-        }
-        dispatch(NumberAC(startValue))
+        localStorage.setItem('values', JSON.stringify(state))
         dispatch(ErrorAC(false))
         dispatch(DisableResetAC(false))
         dispatch(DisableIncAC(false))
@@ -101,7 +96,7 @@ export const AppRedux = () => {
                            callBack={changeMaxValue}
                            error={errorInput}
                            disable={disableInput}/>
-                    <Input name='Star value:'
+                    <Input name='Start value:'
                            value={startValue}
                            callBack={changeStartValue}
                            error={errorInput}

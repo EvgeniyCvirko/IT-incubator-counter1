@@ -1,27 +1,36 @@
 {
-  "name": "the-first-exam",
+  "name": "project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://evgeniycvirko.github.io/IT-incubator-counter1/",
+  "homepage": "",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
-    "@types/uuid": "^8.3.4",
-    "@types/react-redux": "7.1.22",
-    "react-redux": "^8.0.2",
+    "@redux-devtools/extension": "^3.2.2",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0",
+    "@testing-library/user-event": "13.2.1",
+    "@types/react-dom": "17.0.9",
+    "antd": "4.18.7",
+    "axios": "0.26.0",
+    "classnames": "2.3.1",
+    "formik": "2.2.9",
+    "gh-pages": "3.2.3",
+    "jest": "27.5.1",
     "react": "^18.0.0",
-    "redux": "4.2.0",
     "react-dom": "^18.0.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "5.3.1",
     "react-scripts": "5.0.0",
-    "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "react-test-renderer": "17.0.2",
+    "redux": "4.2.0",
+    "redux-form": "8.3.8",
+    "redux-thunk": "2.4.1",
+    "reselect": "4.1.5",
+    "storybook": "^6.5.9",
+    "typescript": "4.4.2",
+    "uuid": "8.3.2",
+    "web-vitals": "2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -29,12 +38,26 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "jest:integration": "jest -c integration/jest.config.js",
+    "test:integration": "start-server-and-test storybook http-get://localhost:9009 jest:integration"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -50,6 +73,29 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-interactions": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/manager-webpack5": "^6.5.9",
+    "@storybook/node-logger": "^6.5.9",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.9",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/node": "16.7.13",
+    "@types/react": "17.0.20",
+    "@types/react-redux": "7.1.22",
+    "@types/react-router-dom": "5.3.3",
+    "@types/react-test-renderer": "17.0.1",
+    "@types/redux-form": "8.3.3",
+    "@types/uuid": "8.3.4",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "jest-image-snapshot": "^5.1.0",
+    "jest-puppeteer": "^6.1.0",
+    "prop-types": "^15.8.1",
+    "puppeteer": "^14.4.0",
+    "start-server-and-test": "^1.14.0",
+    "webpack": "^5.73.0"
   }
 }

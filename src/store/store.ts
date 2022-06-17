@@ -8,6 +8,23 @@ const rootReducer = combineReducers({
     error: reducerError
 })
 
-export const store = createStore(rootReducer)
+let persistedState
+const persistedStateString  = localStorage.getItem('values')
 
+// const persistedStateStringMV  = localStorage.getItem('maxValue')
+
+if (persistedStateString){
+    persistedState = JSON.parse(persistedStateString)
+    console.log(JSON.parse(persistedStateString))
+}
+export const store = createStore(rootReducer,{
+    value:persistedState,
+} )
+
+
+ /*store.subscribe(() => {
+     // localStorage.setItem('startValue', JSON.stringify(store.getState().value.startValue))
+     localStorage.setItem('values', JSON.stringify(store.getState().value))
+     // localStorage.setItem('maxValue', JSON.stringify(store.getState().value.maxValue))
+ })*/
 export type AppStoreType = ReturnType<typeof rootReducer>

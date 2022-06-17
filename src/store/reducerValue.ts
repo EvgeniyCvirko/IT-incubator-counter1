@@ -1,14 +1,13 @@
 
 
-const initialState ={
-    startValue : Number(localStorage.getItem('startValue')),
-    maxValue : Number(localStorage.getItem('maxValue')),
-    number :Number(localStorage.getItem('startValue')),
+let initialState ={
+    startValue :0 ,
+    maxValue : 5,
+    number : 0 ,
 }
-type initialStateType = typeof initialState
+export type initialStateRVType = typeof initialState
 
-
-export const reducerValue = (state:initialStateType=initialState, action:ActionValueType ): initialStateType => {
+export const reducerValue = (state:initialStateRVType=initialState, action:ActionValueType ): initialStateRVType => {
 
 switch (action.type) {
     case "START-VALUE":

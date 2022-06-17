@@ -2,14 +2,14 @@ const initialState = {
     error: false,
     errorInput: false,
     disableInput: false,
-    disableSet: true,
+    disableSet: false,
     disableReset: false,
     disableInc: false,
 }
-type initialStateType = typeof initialState
+export type initialStateREType = typeof initialState
 
 
-export const reducerError = (state: initialStateType = initialState, action: ActionValueType): initialStateType => {
+export const reducerError = (state: initialStateREType = initialState, action: ActionValueType): initialStateREType => {
     switch (action.type) {
         case "ERROR":
             return {...state, error: action.error }
