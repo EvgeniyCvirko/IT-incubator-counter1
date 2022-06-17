@@ -16,7 +16,6 @@ import {
 import {initialStateRVType, MaxValueAC, NumberAC, StartValueAC} from "./store/reducerValue";
 export const AppRedux = () => {
     const state = useSelector<AppStoreType, initialStateRVType >(state=> state.value)
-    console.log(state)
     const {startValue, maxValue,number} = useSelector<AppStoreType, initialStateRVType>(state => state.value)
     const {error,errorInput,disableInput,disableSet, disableReset,disableInc } = useSelector<AppStoreType, initialStateREType>(state => state.error)
     const dispatch = useDispatch()
@@ -55,28 +54,26 @@ export const AppRedux = () => {
     }
 
     const incNumber = () => {
-
         if (number < maxValue) {
             dispatch(NumberAC(number + 1))
         }
         disableBtnInc()
-
     }
     const restNumber = () => {
         dispatch(NumberAC(startValue))
         dispatch(DisableIncAC(false))
         dispatch(DisableInputAC(false))
     }
-    const changeMaxValue = (value: string) => {
-        dispatch(MaxValueAC(JSON.parse(value)))
-        errorDisable(startValue, JSON.parse(value))
+    const changeMaxValue = (value: number) => {
+        dispatch(MaxValueAC(value))
+        errorDisable(startValue,value)
         redNumber = "redValue";
 
     }
-    const changeStartValue = (value: string) => {
-        dispatch(StartValueAC(JSON.parse(value)))
-        dispatch(NumberAC(JSON.parse(value)))
-        errorDisable(JSON.parse(value), maxValue)
+    const changeStartValue = (value: number) => {
+        dispatch(StartValueAC(value))
+        dispatch(NumberAC(value))
+        errorDisable(value, maxValue)
     }
     const setHandler = () => {
         localStorage.setItem('values', JSON.stringify(state))

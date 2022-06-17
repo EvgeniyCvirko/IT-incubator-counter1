@@ -6,13 +6,13 @@ type InputPropsType = {
     value: number
     error: boolean
     disable: boolean
-    callBack: (value: string) => void
+    callBack: (value: number) => void
 }
 
 export const Input = (props: InputPropsType) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.callBack(e.currentTarget.value)
+        props.callBack(+e.currentTarget.value)
     }
     return (
         <div className="input"> {props.name}
